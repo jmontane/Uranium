@@ -17,6 +17,7 @@ on:
       - master
       - dev
       - 'release/**'
+      - 'CURA-*'
     tags:
       - '\d+.+d+*'
       - '[1-4].[0-9]+*'
