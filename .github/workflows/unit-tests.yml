@@ -11,7 +11,7 @@ on:
       - 'cmake/**'
       - 'conanfile.py'
       - 'CMakeLists.txt'
-      - '.github/workflows/conan-package.yml'
+      - '.github/workflows/unit-tests.yml'
     branches:
       - main
       - master
@@ -31,7 +31,7 @@ on:
       - 'cmake/**'
       - 'conanfile.py'
       - 'CMakeLists.txt'
-      - '.github/workflows/conan-package.yml'
+      - '.github/workflows/unit-tests.yml'
     branches:
       - main
       - master
