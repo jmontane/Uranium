@@ -63,8 +63,8 @@ jobs:
         if: ${{ runner.os != 'Windows' }}
         run: |
           pip install -r .github/workflows/requirements-workflow.txt
-          pip install -r .github/workflows/requirements.txt
-          pip install -r .github/workflows/requirements-dev.txt
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
           conan config install https://github.com/Ultimaker/conan-config.git -a "-b CURA-9177_Fix_CI_CD" -tf $HOME/.conan
           conan profile new default --detect
           conan user -p $CONAN_PASS -r ultimaker $CONAN_USER
