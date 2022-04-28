@@ -80,11 +80,13 @@ jobs:
       - name: Upload the Dependency package(s)
         run: conan upload "*" -r ultimaker --all -c
 
+      - name: Setup the Virtual environment
+        run: venv/bin/uranium.sh
+
       - name: Run Unit Test Uranium
         id: run-test
         shell: bash
         run: |
-          source venv/bin/uranium.sh
           cd tests
           pytest
 
