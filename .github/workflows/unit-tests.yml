@@ -79,20 +79,19 @@ jobs:
           conan install . -pr:b cura_build.jinja -pr:h cura_release.jinja --build=missing --update -o enable_testing=True
           chmod +x ./venv/bin/uranium.sh
 
-      - name: Debug Virtual environment
-        run: |
-          cat ${{ format('{0}/venv/bin/uranium.sh', github.workspace) }}
-          ls -al ${{ format('{0}/venv/bin/', github.workspace) }}
-
       - name: Upload the Dependency package(s)
         run: conan upload "*" -r ultimaker --all -c
 
       - name: Activate Virtual environment
         run: ${{ format('{0}/venv/bin/uranium.sh', github.workspace) }}
 
+      - name: Debug Virtual environment
+        run: |
+          env
+          ls -al ${{ format('{0}/venv/bin/', github.workspace) }}
+
       - name: Run Unit Test Uranium
         id: run-test
-        shell: bash
         run: |
           cd tests
           pytest
