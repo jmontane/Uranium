@@ -11,6 +11,7 @@ on:
       - 'conanfile.py'
       - 'CMakeLists.txt'
       - '.github/workflows/conan-package.yml'
+      - '.github/workflows/requirements-workflow.txt'
     branches:
       - main
       - master
@@ -30,6 +31,7 @@ on:
       - 'conanfile.py'
       - 'CMakeLists.txt'
       - '.github/workflows/conan-package.yml'
+      - '.github/workflows/requirements-workflow.txt'
     branches:
       - main
       - master
