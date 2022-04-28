@@ -22,13 +22,15 @@ class UraniumConan(ConanFile):
     exports = "LICENSE*"
     exports_sources = "requirements.txt", "requirements-dev.txt", "UM/*", "plugins/*", "resources/*"
     settings = "os", "compiler", "build_type", "arch"
-    python_requires = "PythonVirtualEnvironment/0.2.1@ultimaker/testing"
+    python_requires = "PythonVirtualEnvironment/0.2.0@ultimaker/testing"
     no_copy_source = True
     options = {
-        "enable_testing": [True, False]
+        "enable_testing": [True, False],
+        "generate_venv": [True, False]
     }
     default_options = {
-        "enable_testing": False
+        "enable_testing": False,
+        "generate_venv": True
     }
     scm = {
         "type": "git",
@@ -60,12 +62,13 @@ class UraniumConan(ConanFile):
         self.folders.generators = os.path.join("venv", "bin")
 
     def generate(self):
-        venv = self.python_requires["PythonVirtualEnvironment"].module.PythonVirtualEnvironment(self)
-        reqs = ["requirements.txt"]
-        if self.options.enable_testing:
-            reqs.append("requirements-dev.txt")
-        venv.configure(python_interpreter = sys.executable, requirements_txt = reqs, use_env_file = "$GITHUB_ENV")
-        venv.generate()
+        if self.options.generate_venv:
+            venv = self.python_requires["PythonVirtualEnvironment"].module.PythonVirtualEnvironment(self)
+            reqs = ["requirements.txt"]
+            if self.options.enable_testing:
+                reqs.append("requirements-dev.txt")
+            venv.configure(python_interpreter = sys.executable, requirements_txt = reqs)
+            venv.generate()
 
     def package(self):
         self.copy("*", src = os.path.join(self.source_folder, "plugins"), dst = os.path.join("site-packages", "plugins"))
