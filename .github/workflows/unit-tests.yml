@@ -82,6 +82,7 @@ jobs:
 
       - name: Run Unit Test Uranium
         id: run-test
+        shell: bash
         run: |
           source venv/bin/uranium.sh
           cd tests
