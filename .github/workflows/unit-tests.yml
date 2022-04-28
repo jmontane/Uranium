@@ -82,7 +82,7 @@ jobs:
       - name: Debug Virtual environment
         run: |
           cat ${{ format('{0}/venv/bin/uranium.sh', github.workspace) }}
-          la ${{ format('{0}/venv/bin/uranium.sh', github.workspace) }}
+          ls -al ${{ format('{0}/venv/bin/', github.workspace) }}
 
       - name: Upload the Dependency package(s)
         run: conan upload "*" -r ultimaker --all -c
