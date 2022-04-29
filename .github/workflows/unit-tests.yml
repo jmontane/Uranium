@@ -80,10 +80,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          conan install . -pr:b cura_build.jinja -pr:h cura_release.jinja --build=missing --update -o enable_testing=True -o generate_venv=False
+          conan install . -pr:b cura_build.jinja -pr:h cura_release.jinja --build=missing --update -o enable_testing=True -g GitHubActionsRunEnv
+          chmod +x ./venv/bin/activate_github_actions_runenv.sh
 
       - name: Upload the Dependency package(s)
         run: conan upload "*" -r ultimaker --all -c
+
+      - name: Activate env
+        run: ./venv/bin/activate_github_actions_runenv.sh
 
       - name: Run Unit Test Uranium
         id: run-test
